@@ -3,7 +3,7 @@
 #include "token_constraint.h"
 
 TEST(LexerTests, TestValidBuffer) {
-    std::string inputBuffer = R"(
+  std::string inputBuffer = R"(
 def main() {
     # Define a variable `a` with shape <2, 3>, initialized with the literal value.
     # The shape is inferred from the supplied literal.
@@ -18,80 +18,81 @@ def main() {
     print(transpose(a) * transpose(b));
 };
 )";
-    std::vector<LexToken> expectedOutput = {{TokenType::Def, "def"},
-                                            {TokenType::Identifier, "main"},
-                                            {TokenType::LeftParen, "("},
-                                            {TokenType::RightParen, ")"},
-                                            {TokenType::LeftBrace, "{"},
-                                            {TokenType::Var, "var"},
-                                            {TokenType::Identifier, "a"},
-                                            {TokenType::Equal, "="},
-                                            {TokenType::LeftSquare, "["},
-                                            {TokenType::LeftSquare, "["},
-                                            {TokenType::Number, "1"},
-                                            {TokenType::Comma, ","},
-                                            {TokenType::Number, "2"},
-                                            {TokenType::Comma, ","},
-                                            {TokenType::Number, "3"},
-                                            {TokenType::RightSquare, "]"},
-                                            {TokenType::Comma, ","},
-                                            {TokenType::LeftSquare, "["},
-                                            {TokenType::Number, "4"},
-                                            {TokenType::Comma, ","},
-                                            {TokenType::Number, "5"},
-                                            {TokenType::Comma, ","},
-                                            {TokenType::Number, "6"},
-                                            {TokenType::RightSquare, "]"},
-                                            {TokenType::RightSquare, "]"},
-                                            {TokenType::Semicolon, ";"},
-                                            {TokenType::Var, "var"},
-                                            {TokenType::Identifier, "b"},
-                                            {TokenType::LeftAngle, "<"},
-                                            {TokenType::Number, "2"},
-                                            {TokenType::Comma, ","},
-                                            {TokenType::Number, "3"},
-                                            {TokenType::RightAngle, ">"},
-                                            {TokenType::Equal, "="},
-                                            {TokenType::LeftSquare, "["},
-                                            {TokenType::Number, "1"},
-                                            {TokenType::Comma, ","},
-                                            {TokenType::Number, "2"},
-                                            {TokenType::Comma, ","},
-                                            {TokenType::Number, "3"},
-                                            {TokenType::Comma, ","},
-                                            {TokenType::Number, "4"},
-                                            {TokenType::Comma, ","},
-                                            {TokenType::Number, "5"},
-                                            {TokenType::Comma, ","},
-                                            {TokenType::Number, "6"},
-                                            {TokenType::RightSquare, "]"},
-                                            {TokenType::Semicolon, ";"},
-                                            {TokenType::Identifier, "print"},
-                                            {TokenType::LeftParen, "("},
-                                            {TokenType::Identifier, "transpose"},
-                                            {TokenType::LeftParen, "("},
-                                            {TokenType::Identifier, "a"},
-                                            {TokenType::RightParen, ")"},
-                                            {TokenType::Times, "*"},
-                                            {TokenType::Identifier, "transpose"},
-                                            {TokenType::LeftParen, "("},
-                                            {TokenType::Identifier, "b"},
-                                            {TokenType::RightParen, ")"},
-                                            {TokenType::RightParen, ")"},
-                                            {TokenType::Semicolon, ";"},
-                                            {TokenType::RightBrace, "}"},
-                                            {TokenType::Semicolon, ";"}};
+  std::vector<LexToken> expectedOutput = {{LexToken(TokenType::Def)},
+					  {LexToken(TokenType::Identifier, "main")},
+					  {LexToken(TokenType::LeftParen)},
+					  {LexToken(TokenType::RightParen)},
+					  {LexToken(TokenType::LeftBrace)},
+					  {LexToken(TokenType::Var)},
+					  {LexToken(TokenType::Identifier, "a")},
+					  {LexToken(TokenType::Equal)},
+					  {LexToken(TokenType::LeftSquare)},
+					  {LexToken(TokenType::LeftSquare)},
+					  {LexToken(TokenType::Number, "1")},
+					  {LexToken(TokenType::Comma)},
+					  {LexToken(TokenType::Number, "2")},
+					  {LexToken(TokenType::Comma)},
+					  {LexToken(TokenType::Number, "3")},
+					  {LexToken(TokenType::RightSquare)},
+					  {LexToken(TokenType::Comma)},
+					  {LexToken(TokenType::LeftSquare)},
+					  {LexToken(TokenType::Number, "4")},
+					  {LexToken(TokenType::Comma)},
+					  {LexToken(TokenType::Number, "5")},
+					  {LexToken(TokenType::Comma)},
+					  {LexToken(TokenType::Number, "6")},
+					  {LexToken(TokenType::RightSquare)},
+					  {LexToken(TokenType::RightSquare)},
+					  {LexToken(TokenType::Semicolon)},
+					  {LexToken(TokenType::Var)},
+					  {LexToken(TokenType::Identifier, "b")},
+					  {LexToken(TokenType::LeftAngle)},
+					  {LexToken(TokenType::Number, "2")},
+					  {LexToken(TokenType::Comma)},
+					  {LexToken(TokenType::Number, "3")},
+					  {LexToken(TokenType::RightAngle)},
+					  {LexToken(TokenType::Equal)},
+					  {LexToken(TokenType::LeftSquare)},
+					  {LexToken(TokenType::Number, "1")},
+					  {LexToken(TokenType::Comma)},
+					  {LexToken(TokenType::Number, "2")},
+					  {LexToken(TokenType::Comma)},
+					  {LexToken(TokenType::Number, "3")},
+					  {LexToken(TokenType::Comma)},
+					  {LexToken(TokenType::Number, "4")},
+					  {LexToken(TokenType::Comma)},
+					  {LexToken(TokenType::Number, "5")},
+					  {LexToken(TokenType::Comma)},
+					  {LexToken(TokenType::Number, "6")},
+					  {LexToken(TokenType::RightSquare)},
+					  {LexToken(TokenType::Semicolon)},
+					  {LexToken(TokenType::Identifier, "print")},
+					  {LexToken(TokenType::LeftParen)},
+					  {LexToken(TokenType::Identifier, "transpose")},
+					  {LexToken(TokenType::LeftParen)},
+					  {LexToken(TokenType::Identifier, "a")},
+					  {LexToken(TokenType::RightParen)},
+					  {LexToken(TokenType::Operator, "*")},
+					  {LexToken(TokenType::Identifier, "transpose")},
+					  {LexToken(TokenType::LeftParen)},
+					  {LexToken(TokenType::Identifier, "b")},
+					  {LexToken(TokenType::RightParen)},
+					  {LexToken(TokenType::RightParen)},
+					  {LexToken(TokenType::Semicolon)},
+					  {LexToken(TokenType::RightBrace)},
+					  {LexToken(TokenType::Semicolon)},
+					  {LexToken(TokenType::Eof)}};
 
-    std::vector<LexToken> actualOutput = Scanner::Scan(inputBuffer);
-    ASSERT_TRUE(TokenConstraint::SatisfiedBy(actualOutput, expectedOutput));
+  std::vector<LexToken> actualOutput = Scanner::scan(inputBuffer);
+  ASSERT_TRUE(TokenConstraint::SatisfiedBy(actualOutput, expectedOutput));
 }
 
 
 TEST(LexerTests, TestInvalidLexeme) {
-    std::string inputBuffer = R"(
+  std::string inputBuffer = R"(
 def main() {
     !Foreign character!;
 };
 )";
-    ASSERT_THROW(Scanner::Scan(inputBuffer), std::runtime_error);
+  ASSERT_THROW(Scanner::scan(inputBuffer), std::runtime_error);
 }

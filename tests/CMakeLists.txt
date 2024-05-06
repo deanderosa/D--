@@ -9,13 +9,13 @@ list(LENGTH TestTargets list_length)
 
 # Register a GoogleTest target for a given file
 macro(register_gtest TestTarget TestFile)
-  #add_executable(${TestTarget} ${TestFile} ${SOURCE_FILES})
-  add_executable(${TestTarget} ${TestFile} "${SRC_DIR}/parser.cpp" "${SRC_DIR}/lexer.cpp")
+  # add_executable(${TestTarget} ${TestFile} ${SOURCE_FILES})
+  add_executable(${TestTarget} ${TestFile} "${SRC_DIR}/lexer.cpp" "${SRC_DIR}/parser.cpp")
   target_link_libraries(
     ${TestTarget}
     GTest::gtest_main
   )
-  add_dependencies(${TestTarget} Driver)
+  # add_dependencies(${TestTarget} Driver)
 endmacro()
 
 math(EXPR real_idx "${list_length} - 1" OUTPUT_FORMAT DECIMAL)
