@@ -48,10 +48,6 @@ class NumberExprNode : public ExprNode {
   double Val;
 
 public:
-  // virtual bool operator==(const NumberExprNode& other) const __attribute__((used)) {
-  //   return (Val == other.Val);
-  // }
-
   virtual bool operator==(const Node& other_) const override __attribute__((used)) {
     if (auto other=dynamic_cast<const NumberExprNode*>(&other_)) {
       return (Val == other->Val);
@@ -68,10 +64,6 @@ class VariableExprNode : public ExprNode {
   std::vector<std::unique_ptr<ExprNode>> Args;
 
 public:
-  // virtual bool operator==(const VariableExprNode& other) const __attribute__((used)) {
-  //   return ((Name == other.Name) && (Args == other.Args));
-  // }
-
   virtual bool operator==(const Node& other_) const override __attribute__((used)) {
     if (auto other=dynamic_cast<const VariableExprNode*>(&other_)) {
       return (Name == other->Name && (Args == other->Args));
@@ -84,39 +76,12 @@ public:
     : Name(identifier), Args(std::move(args)) {}
 };
 
-// class CallExprNode : public ExprNode {
-//   std::string Name;
-//   std::vector<std::unique_ptr<ExprNode>> Args;
-
-// public:
-//   // virtual bool operator==(const CallExprNode& other) const __attribute__((used)) {
-//   //   return ((Name == other.Name) && (Args == other.Args));
-//   // }
-
-//   virtual bool operator==(const Node& other_) const override __attribute__((used)) {
-//     if (auto other=dynamic_cast<const CallExprNode*>(&other_)) {
-//       return (Name == other->Name && (Args == other->Args));
-//     } else {
-//       return Node::operator==(other_);
-//     }
-//   }
-
-//   CallExprNode(std::string identifier, std::vector<std::unique_ptr<ExprNode>> args)
-//     : Name(identifier), Args(std::move(args)) {}
-// };
-
 class BinaryExprNode : public ExprNode {
   Op Oper;
   std::unique_ptr<ExprNode> LHS;
   std::unique_ptr<ExprNode> RHS;
 
 public:
-  // virtual bool operator==(const BinaryExprNode& other) const  __attribute__((used)) {
-  //   return ((Oper == other.Oper) && \
-  // 	    (LHS == other.LHS) && \
-  // 	    (RHS == other.RHS));
-  // }
-
   virtual bool operator==(const Node& other_) const override __attribute__((used)) {
     if (auto other=dynamic_cast<const BinaryExprNode*>(&other_)) {
       return ((Oper == other->Oper) && \
@@ -135,10 +100,6 @@ class ArrayExprNode : public ExprNode {
   std::vector<std::unique_ptr<ExprNode>> Entries;
 
 public:
-  // virtual bool operator==(const ArrayExprNode& other) const __attribute__((used)) {
-  //   return (Entries == other.Entries);
-  // }
-
   virtual bool operator==(const Node& other_) const override __attribute__((used)) {
     if (auto other=dynamic_cast<const ArrayExprNode*>(&other_)) {
       return (Entries == other->Entries);
@@ -158,13 +119,6 @@ class AssgnNode : public StmtNode {
   bool IsDecl;
 
 public:
-  // virtual bool operator==(const AssgnNode& other) const  __attribute__((used)) {
-  //   return ((Name == other.Name) && \
-  // 	    (Size == other.Size) && \
-  // 	    (*Expr == *(other.Expr)) && \
-  // 	    (IsDecl == other.IsDecl));
-  // }
-
   virtual bool operator==(const Node& other_) const override __attribute__((used)) {
     if (auto other=dynamic_cast<const AssgnNode*>(&other_)) {
       return ((Name == other->Name) && \
@@ -185,10 +139,6 @@ class PrototypeNode : public Node {
   std::vector<std::string> Args;
 
 public:
-  // virtual bool operator==(const PrototypeNode& other) const __attribute__((used)) {
-  //   return ((Name == other.Name) && (Args == other.Args));
-  // }
-
   virtual bool operator==(const Node& other_) const override __attribute__((used)) {
     if (auto other=dynamic_cast<const PrototypeNode*>(&other_)) {
       return (Name == other->Name && (Args == other->Args));
@@ -206,10 +156,6 @@ class FunctionNode : public Node {
   std::vector<std::unique_ptr<StmtNode>> Body;
 
 public:
-  // virtual bool operator==(const FunctionNode& other) const __attribute__((used)) {
-  //   return ((*Prototype == *(other.Prototype)) && (Body == other.Body));
-  // }
-
   virtual bool operator==(const Node& other_) const override __attribute__((used)) {
     if (auto other=dynamic_cast<const FunctionNode*>(&other_)) {
       return ((*Prototype == *(other->Prototype)) && (Body == other->Body));

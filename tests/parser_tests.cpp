@@ -9,7 +9,7 @@ def main() {
     # Define a variable `a` with shape <2, 3>, initialized with the literal value.
     # The shape is inferred from the supplied literal.
     var a = [[1, 2, 3], [4, 5, 6]];
-
+b
     # b is identical to a, the literal tensor is implicitly reshaped: defining new
     # variables is the way to reshape tensors (element count must match).
     var b<2, 3> = [1, 2, 3, 4, 5, 6];
